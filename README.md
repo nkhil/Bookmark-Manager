@@ -10,4 +10,8 @@ As a user
 I would like to 
 view a list of my bookmarks
 ```
+Domain Model
+-------------
+
+![alt text](./images/1.png)
 
