@@ -13,5 +13,5 @@ view a list of my bookmarks
 Domain Model
 -------------
 
-![alt text](./images/1.png)
+[![1.png](https://i.postimg.cc/NFNLWWmH/1.png)](https://postimg.cc/ZvdTNsfb)
 
