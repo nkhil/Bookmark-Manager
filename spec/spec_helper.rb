@@ -1,3 +1,7 @@
+#Every time 'rspec' is run, the following line will run creating the test environment for us...
+ENV['ENVIRONMENT'] = 'test'
+require 'setup_test_database'
+
 require 'simplecov'
 require 'simplecov-console'
 
@@ -14,11 +18,16 @@ require 'capybara'
 require 'rspec'
 ENV['RACK_ENV'] = 'test'
 require 'capybara/rspec'
+require 'pg'
 # require_relative './features/web_helpers'
 
 Capybara.app = BookmarkManager
 
 RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
+  
   config.after(:suite) do
     puts
     puts "\e[33mHave you considered running rubocop? It will help you improve your code!\e[0m"
