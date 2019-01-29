@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Bookmarks</title>
+  </head>
+  <body>
+    <h1>Bookmarks:</h1>
+    <ul>
+      <% @bookmarks.each { |bookmark| %>
+        <li><a href=bookmark><%= bookmark %></a></li>
+      <% } %>
+    </ul>
+  </body>
+
+</html>
