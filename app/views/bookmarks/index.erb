@@ -4,11 +4,20 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <title>Bookmarks 2</title>
   </head>
+  
   <body>
     <h1>Bookmarks:</h1>
     <ul>
       <% @bookmarks.each { |bookmark| %>
-        <li><a href=bookmark><%= bookmark %></a></li>
+        <li class="bookmark" id= "bookmark-<%= bookmark.id %>" >
+          <a href="<%= bookmark.url %>" target="_blank">
+            <%= bookmark.title %>
+          </a>
+          <form action="/bookmarks/<%= bookmark.id %>" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input type="submit" value="Delete" />
+          </form>
+        </li>
       <% } %>
     </ul>
   </body>
