@@ -1,4 +1,5 @@
 require './app/lib/bookmark'
+require 'setup_test_database'
 
 describe Bookmark do
   describe '.all' do
