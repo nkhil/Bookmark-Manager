@@ -1,9 +1,13 @@
 require 'sinatra/base'
+require 'sinatra/flash'
+require 'uri'
 require_relative './lib/bookmark'
 require_relative './database_connection_setup'
 
+
 class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
+  register Sinatra::Flash
 
   get '/' do
     erb :index
@@ -20,10 +24,14 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/bookmarks-process' do
-    p "form data submitted to /bookmarks"
-    p params
-    Bookmark.create(url: params[:url], title: params[:title])
-    redirect '/bookmarks'
+    if params['url'] =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      p "form data submitted to /bookmarks"
+      Bookmark.create(url: params[:url], title: params[:title])
+      redirect '/bookmarks'
+    else
+      flash[:notice] = "Please submit a valid url you beauty"
+      redirect 'bookmarks/new'
+    end
   end
 
   delete '/bookmarks/:id' do
@@ -38,7 +46,7 @@ class BookmarkManager < Sinatra::Base
     @bookmark = Bookmark.find(id: params[:id])
     erb :'bookmarks/edit'
   end
-  
+
   patch '/bookmarks/:id' do
     p "bookmarks/:id params..."
     p params

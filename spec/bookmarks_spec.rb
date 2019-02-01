@@ -10,9 +10,9 @@ describe Bookmark do
       bookmark = Bookmark.create(url: "http://www.makersacademy.com", title: "Makers Academy")
       Bookmark.create(url: "http://www.destroyallsoftware.com", title: "Destroy All Software")
       Bookmark.create(url: "http://www.google.com", title: "Google")
-   
+
       bookmarks = Bookmark.all
-   
+
       expect(bookmarks.length).to eq 3
       expect(bookmarks.first).to be_a Bookmark
       # expect(bookmarks.first.id).to eq bookmark['id']
@@ -27,6 +27,12 @@ describe Bookmark do
 
       expect(bookmark.url).to eq('http://www.testbookmark.com')
       expect(bookmark.title).to eq('Test Bookmark')
+    end
+
+    it 'does not create a new bookmark with invalid url' do
+      bookmark = Bookmark.create(url: 'fake url', title: 'Test Bookmark')
+
+      expect(bookmark).not_to be_a Bookmark
     end
   end
 
