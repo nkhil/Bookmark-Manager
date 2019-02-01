@@ -1,6 +1,7 @@
 #Every time 'rspec' is run, the following line will run creating the test environment for us...
 ENV['ENVIRONMENT'] = 'test'
 require 'setup_test_database'
+# require_relative './app/lib/database_connection'
 
 require 'simplecov'
 require 'simplecov-console'
